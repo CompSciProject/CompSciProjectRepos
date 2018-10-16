@@ -3,4 +3,4 @@ final_time=10;
 func=@(time_value,y_value) sin(y_value)*sin(time_value);
 initial_position=1;
 
-euler_explicit(final_time,initial_position,func, number_of_iterations);
+FullExEul(final_time,initial_position,func, number_of_iterations)
