@@ -5,4 +5,7 @@
 addpath('../../ExEul/code/')
 
 func = @(t, y) sin(y)*sin(t);
-fullPredCorr(0, func, 10, 10)
+y0 = 0;
+t_fin = 10;
+N = 10;
+fullPredCorr(y0, func, t_fin, N)
