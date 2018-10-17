@@ -5,4 +5,4 @@ y0 = 0.1;
 t_fin = 10;
 N = 100;
 
-[T,Y] FullExEul(final_time,initial_position,func, number_of_iterations);
+[T,Y] = FullExEul(final_time,initial_position,func, number_of_iterations);
