@@ -1,9 +1,9 @@
 % Full Predictor-Corrector solution
 %
 % Inputs:
+% 	- t_fin:	final time/value of independent variable
 % 	- y_0:		initial value
 % 	- f:		functional form of derivative
-% 	- t_fin:	final time/value of independent variable
 %	- N:		number of steps to take
 %
 % Output:
