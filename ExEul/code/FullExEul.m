@@ -1,14 +1,24 @@
+%FULLEXEUL
+%Solves the problem via Explicit Euler method
+%
+%Inputs:
+%       -y_0:          initial value
+%       -f:            functional form of derivative
+%       -t_fin:        final time/value of  independent variable
+%       -N:            number of steps to take
+%
+%Outputs:
+%       -sol:          solution array
+function output=FullExEul(t_fin,y_0,f, N)
 
-function output=FullExEul(final_time,initial_position,func, number_of_iterations)
+    h=t_fin/N;
+    times=0:h:t_fin; %define vector of time
+    sol=nan(1,N+1)'; %define blank vector in which to place solutions
+    sol(1,1) = y_0;
+    for ii=1:N
 
-    h=final_time/number_of_iterations;
-    times=0:h:final_time; %define vector of time
-    solutions=nan(1,number_of_iterations); %define blank vector in which to place solutions
-    solutions(1,1) = initial_position;
-    for ii=1:number_of_iterations
-
-        func_value = func(ii*h, solutions(ii));
-        solutions(ii+1) = StepExEul(solutions(ii), h, func_value);
+        func_value = f(ii*h, sol(ii));
+        sol(ii+1) = StepExEul(sol(ii), h, func_value);
     end
-    output = [times ; solutions];
+    output = sol;
 end
