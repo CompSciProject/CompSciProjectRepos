@@ -9,17 +9,17 @@
 %       -N:            number of steps to take
 %
 %Outputs:
+%       -time:	       returns vector of values of time
 %       -sol:          solution array
-function output=FullExEul(t_0,t_fin,y_0,f,N)
+%
+function [time,sol] =FullExEul(t_0,t_fin,y_0,f,N)
 
     h=(t_fin-t_0)/N;
-    times=0:h:t_fin; %define vector of time
+    time=0:h:t_fin.';   %define vector of time
     sol=nan(1,N+1).'; %define blank vector in which to place solutions
     sol(1,1) = y_0;
     for ii=1:N
-
-        func_value = f(t_0+ii*h, sol(ii));
-        sol(ii+1) = StepExEul(sol(ii), h, func_value);
+        func_value = f(time(ii), sol(ii));
+        sol(ii+1) = StepExEul(sol(ii), time(ii), func_value);
     end
-    output = sol;
 end
