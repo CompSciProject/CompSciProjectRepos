@@ -14,7 +14,7 @@ function output=FullExEul(t_0,t_fin,y_0,f,N)
 
     h=(t_fin-t_0)/N;
     times=0:h:t_fin; %define vector of time
-    sol=nan(1,N+1)'; %define blank vector in which to place solutions
+    sol=nan(1,N+1).'; %define blank vector in which to place solutions
     sol(1,1) = y_0;
     for ii=1:N
 
