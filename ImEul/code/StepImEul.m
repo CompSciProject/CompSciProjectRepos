@@ -12,10 +12,11 @@
 function y_new = StepImEul(y_curr,dt,t_curr,func)
 
     F = @(x) y_curr + dt*func(t_curr+dt,x);
-    y_new = 1;
+    %y_new = y_curr;
+    y_new = F(y_curr);
 
     while abs(y_new-y_curr) > 1e-8
-        y_new = F(y_new);
         y_curr = y_new;
+        y_new = F(y_curr);
     end
 end
