@@ -1,6 +1,8 @@
-number_of_iterations=10;
-final_time=10;
-func=@(time_value,y_value) sin(y_value)*sin(time_value);
-initial_position=1;
+%Execute Explicit Euler
+
+func = @(t,y) -y;
+y0 = 0.1;
+t_fin = 10;
+N = 100;
 
 FullExEul(final_time,initial_position,func, number_of_iterations)
