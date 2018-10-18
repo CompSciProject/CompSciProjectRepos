@@ -28,23 +28,29 @@ end
 f = func2str(func);
 f = f(7:end);
 
-if f == '1'
-    sol_true = matfile('\CompSciProjectRepos\testData\yPrimeEqualsOne.mat');
-elseif f == 'y'
-    sol_true = matfile('\CompSciProjectRepos\testData\yPrimeEqualsY.mat');
-elseif f == 't'
-    sol_true = matfile('\CompSciProjectRepos\testData\yPrimeEqualsT.mat');
-elseif min(f == 'y*t') == 1 || min(f == 't*y') == 1
-    sol_true = matfile('\CompSciProjectRepos\testData\yPrimeEqualsYT.mat');
-elseif min(f == 'y^2*t') == 1 || min(f == 't*y^2') == 1
-    sol_true = matfile('\CompSciProjectRepos\testData\yPrimeEqualsYSquaredT.mat');
+if strcmp(f,'1')
+    sol_true = load('../testData/yprimeEqualsOne.mat');
+elseif strcmp(f,'y')
+    sol_true = load('../testData/yprimeEqualsY.mat');
+elseif strcmp(f,'t')
+    sol_true = load('../testData/yprimeEqualsT.mat');
+elseif strcmp(f,'t*y') || strcmp(f,'y*t')
+    sol_true = load('../testData/yprimeEqualsYT.mat');
+elseif strcmp(f,'t*y^2') || strcmp(f,'y^2*t')
+    sol_true = load('../testData/yprimeEqualsYSquaredT.mat');
 end
 
-er_rel = abs((sol_true - sol_meth)/sol_meth);
-er = norm(er_rel,2);
+sol_true = cell2mat(struct2cell(sol_true))';
 
-if er < tol
-    outcome = 1;
+plot(time,sol_meth)
+hold on
+plot(time(1:1000),sol_true(1:1000),'r')
+
+er_rel = abs((sol_true(end) - sol_meth(end))/sol_meth(end));
+
+if er_rel < tol
+    outcome = 1
 else 
-    outcome = 0;
+    outcome = 0
 end
+return
