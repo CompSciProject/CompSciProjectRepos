@@ -10,12 +10,14 @@
 % Output:
 %	- sol: 		solution array
 
-function sol = completePredCorr(t_0, t_fin, y_0, f, N)
-
-    sol = [y_0];
+function [time,sol] = completePredCorr(t_0, t_fin, y_0, f, N)
+    
+    time = linspace(t_0,t_fin,N+1).';  % Creates set of t-values
+    sol = nan(1,N+1).';  % Defines space of values for solution
+    sol(1) = [y_0];      % Sets first value of solution vector to be initial condition
+    
     dt = (t_fin-t_0)/N;
     for i = 1:N
-        sol(i+1) = StepPredCorr(sol(i), dt, t_0 + i*dt, f);
+        sol(i+1) = StepPredCorr(sol(i), dt, time(i+1), f);
     end
-
 end
